@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cams Healthcare</title>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root{
+            --primary:#0ea5e9;
+            --secondary:#0284c7;
+            --accent:#f59e0b;
+
+            --slate-50:#f8fafc;
+            --slate-100:#f1f5f9;
+            --slate-200:#e2e8f0;
+            --slate-300:#cbd5e1;
+            --slate-400:#94a3b8;
+            --slate-500:#64748b;
+            --slate-600:#475569;
+            --slate-700:#334155;
+            --slate-800:#1e293b;
+            --slate-900:#0f172a;
+
+            --white:#ffffff;
+            --red:#ef4444;
+            --green:#22c55e;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            background:var(--slate-50);
+            color:var(--slate-800);
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            line-height:1.5;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        button{
+            border:none;
+            cursor:pointer;
+            font-family:inherit;
+        }
+
+        input,
+        textarea,
+        select{
+            font-family:inherit;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar{
+            width:8px;
+        }
+
+        ::-webkit-scrollbar-track{
+            background:#f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background:#cbd5e1;
+            border-radius:4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover{
+            background:#94a3b8;
+        }
+
+        .hidden{
+            display:none !important;
+        }
+
+        .fade-in{
+            animation:fadeIn .4s ease-in-out;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(10px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        .glass{
+            background:rgba(255,255,255,.9);
+            backdrop-filter:blur(10px);
+        }
+
+        /* NAVBAR */
+
+        nav{
+            position:fixed;
+            width:100%;
+            top:0;
+            z-index:50;
+            border-bottom:1px solid var(--slate-200);
+            box-shadow:0 1px 3px rgba(0,0,0,.05);
+        }
+
+        .nav-wrapper{
+            max-width:1280px;
+            margin:auto;
+            padding:0 20px;
+        }
+
+        .nav-inner{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            height:64px;
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            cursor:pointer;
+        }
+
+        .logo-box{
+            width:40px;
+            height:40px;
+            background:white;
+            border-radius:14px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            overflow:hidden;
+            box-shadow:0 4px 10px rgba(0,0,0,.08);
+        }
+
+        .logo-box img{
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            padding:4px;
+        }
+
+        .logo-text{
+            font-weight:700;
+            font-size:20px;
+            line-height:1.1;
+        }
+
+        .logo-text span{
+            color:var(--primary);
+        }
+
+        .desktop-menu{
+            display:flex;
+            align-items:center;
+            gap:24px;
+        }
+
+        .desktop-menu a{
+            color:var(--slate-600);
+            font-weight:500;
+            transition:.3s;
+        }
+
+        .desktop-menu a:hover{
+            color:var(--primary);
+        }
+
+        .user-box{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            border-left:1px solid var(--slate-200);
+            padding-left:16px;
+        }
+
+        .user-avatar{
+            width:32px;
+            height:32px;
+            border-radius:50%;
+            background:var(--slate-200);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:var(--slate-600);
+        }
+
+        /* GENERAL */
+
+        main{
+            flex:1;
+            display:flex;
+            flex-direction:column;
+            width:100%;
+        }
+
+        section{
+            width:100%;
+        }
+
+        .container{
+            max-width:1280px;
+            margin:auto;
+            padding:0 20px;
+        }
+
+        .center-screen{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+        }
+
+        .card{
+            background:white;
+            border-radius:32px;
+            overflow:hidden;
+            box-shadow:0 20px 40px rgba(0,0,0,.08);
+            border:1px solid var(--slate-100);
+        }
+
+        /* LOGIN */
+
+        #view-login{
+            background:linear-gradient(to bottom right,#eff6ff,#f1f5f9);
+        }
+
+        .login-card{
+            width:100%;
+            max-width:480px;
+        }
+
+        .login-header{
+            background:var(--primary);
+            color:white;
+            padding:32px;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .login-header h2{
+            font-size:32px;
+            margin-bottom:6px;
+        }
+
+        .login-header p{
+            color:#dbeafe;
+        }
+
+        .login-logo{
+            width:80px;
+            height:80px;
+            background:white;
+            border-radius:24px;
+            margin:0 auto 16px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            overflow:hidden;
+            box-shadow:0 10px 20px rgba(0,0,0,.15);
+        }
+
+        .login-logo img{
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            padding:8px;
+        }
+
+        .form-wrapper{
+            padding:32px;
+        }
+
+        .tab-header{
+            display:flex;
+            border-bottom:1px solid var(--slate-200);
+            margin-bottom:24px;
+        }
+
+        .tab-header button{
+            flex:1;
+            padding-bottom:12px;
+            background:none;
+            font-weight:600;
+            font-size:15px;
+        }
+
+        .active-tab{
+            color:var(--primary);
+            border-bottom:2px solid var(--primary);
+        }
+
+        .inactive-tab{
+            color:var(--slate-400);
+        }
+
+        .inactive-tab:hover{
+            color:var(--slate-600);
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        .form-group label{
+            display:block;
+            margin-bottom:6px;
+            font-size:14px;
+            font-weight:500;
+            color:var(--slate-700);
+        }
+
+        .input-icon{
+            position:relative;
+        }
+
+        .input-icon i{
+            position:absolute;
+            top:50%;
+            left:14px;
+            transform:translateY(-50%);
+            color:var(--slate-400);
+        }
+
+        input,
+        textarea,
+        select{
+            width:100%;
+            padding:14px 16px 14px 42px;
+            border:1px solid var(--slate-200);
+            border-radius:16px;
+            outline:none;
+            transition:.3s;
+            background:white;
+        }
+
+        textarea{
+            padding-left:16px;
+            resize:none;
+        }
+
+        select{
+            padding-left:16px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus{
+            border-color:var(--primary);
+            box-shadow:0 0 0 4px rgba(14,165,233,.15);
+        }
+
+        .remember-row{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            font-size:14px;
+            margin-bottom:20px;
+        }
+
+        .remember-row label{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            color:var(--slate-600);
+        }
+
+        .remember-row a{
+            color:var(--primary);
+            font-weight:500;
+        }
+
+        .remember-row a:hover{
+            text-decoration:underline;
+        }
+
+        .primary-btn{
+            width:100%;
+            background:var(--primary);
+            color:white;
+            padding:14px;
+            border-radius:16px;
+            font-weight:600;
+            font-size:16px;
+            transition:.3s;
+            box-shadow:0 10px 25px rgba(14,165,233,.3);
+        }
+
+        .primary-btn:hover{
+            background:var(--secondary);
+            transform:translateY(-2px);
+        }
+
+        .admin-btn{
+            width:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+            padding:14px;
+            border-radius:16px;
+            background:var(--slate-50);
+            border:1px solid var(--slate-200);
+            color:var(--slate-600);
+            font-weight:500;
+            margin-top:24px;
+            transition:.3s;
+        }
+
+        .admin-btn:hover{
+            background:var(--slate-100);
+        }
+
+        /* CITY */
+
+        #view-city{
+            padding:120px 20px 60px;
+        }
+
+        .city-title{
+            text-align:center;
+            margin-bottom:50px;
+        }
+
+        .city-title h2{
+            font-size:42px;
+            margin-bottom:14px;
+        }
+
+        .city-title p{
+            color:var(--slate-500);
+            font-size:18px;
+        }
+
+        .city-grid{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:24px;
+        }
+
+        .city-card{
+            background:white;
+            border-radius:24px;
+            padding:28px;
+            border:1px solid var(--slate-200);
+            box-shadow:0 2px 6px rgba(0,0,0,.04);
+            transition:.3s;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:16px;
+        }
+
+        .city-card:hover{
+            transform:translateY(-4px);
+            box-shadow:0 12px 30px rgba(0,0,0,.08);
+            border-color:var(--primary);
+        }
+
+        .city-icon{
+            width:64px;
+            height:64px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:24px;
+        }
+
+        /* DETAILS */
+
+        #view-details{
+            padding:120px 20px 60px;
+        }
+
+        .details-card{
+            max-width:900px;
+            margin:auto;
+        }
+
+        .details-header{
+            background:var(--slate-800);
+            color:white;
+            text-align:center;
+            padding:24px;
+        }
+
+        .details-header p{
+            color:#cbd5e1;
+            margin-top:4px;
+        }
+
+        .details-form{
+            padding:32px;
+        }
+
+        .form-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:24px;
+        }
+
+        .double-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:16px;
+        }
+
+        .full-width{
+            grid-column:span 2;
+        }
+
+        .bottom-row{
+            margin-top:24px;
+            padding-top:24px;
+            border-top:1px solid var(--slate-100);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .back-btn{
+            background:none;
+            color:var(--slate-500);
+            font-weight:500;
+        }
+
+        .back-btn:hover{
+            color:var(--slate-800);
+        }
+
+        /* HOME */
+
+        #view-home{
+            padding-top:64px;
+            background:white;
+            padding-bottom:60px;
+        }
+
+        .hero{
+            background:var(--slate-50);
+            border-bottom:1px solid var(--slate-200);
+            overflow:hidden;
+        }
+
+        .hero-inner{
+            max-width:1280px;
+            margin:auto;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:40px;
+            align-items:center;
+            padding:80px 20px;
+        }
+
+        .hero-badge{
+            display:inline-block;
+            padding:6px 14px;
+            border-radius:999px;
+            background:#dbeafe;
+            color:var(--primary);
+            font-size:14px;
+            font-weight:600;
+            margin-bottom:20px;
+        }
+
+        .hero h1{
+            font-size:56px;
+            line-height:1.1;
+            margin-bottom:20px;
+            font-weight:800;
+        }
+
+        .hero h1 span{
+            color:var(--primary);
+        }
+
+        .hero p{
+            color:var(--slate-500);
+            font-size:20px;
+            margin-bottom:30px;
+        }
+
+        .hero-buttons{
+            display:flex;
+            gap:16px;
+            flex-wrap:wrap;
+        }
+
+        .secondary-btn{
+            padding:14px 24px;
+            border-radius:16px;
+            border:2px solid var(--slate-200);
+            background:white;
+            color:var(--slate-700);
+            font-weight:600;
+        }
+
+        .secondary-btn:hover{
+            background:var(--slate-50);
+        }
+
+        .hero-graphic{
+            position:relative;
+            height:500px;
+            background:#dbeafe;
+            border-radius:32px;
+            overflow:hidden;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .blob{
+            position:absolute;
+            width:350px;
+            height:350px;
+            border-radius:50%;
+            filter:blur(80px);
+            opacity:.35;
+            animation:pulse 4s infinite;
+        }
+
+        .blob.blue{
+            background:var(--primary);
+            top:40px;
+            left:40px;
+        }
+
+        .blob.orange{
+            background:var(--accent);
+            bottom:40px;
+            right:40px;
+            animation-delay:2s;
+        }
+
+        @keyframes pulse{
+            0%,100%{
+                transform:scale(1);
+            }
+            50%{
+                transform:scale(1.08);
+            }
+        }
+
+        .doctor-card{
+            position:relative;
+            z-index:2;
+            background:white;
+            padding:24px;
+            border-radius:24px;
+            display:flex;
+            align-items:center;
+            gap:16px;
+            transform:rotate(3deg);
+            box-shadow:0 20px 40px rgba(0,0,0,.12);
+        }
+
+        .doctor-icon{
+            width:64px;
+            height:64px;
+            border-radius:50%;
+            background:#dcfce7;
+            color:#22c55e;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:28px;
+        }
+
+        /* SERVICES */
+
+        .services{
+            max-width:1280px;
+            margin:auto;
+            padding:80px 20px;
+        }
+
+        .services-title{
+            text-align:center;
+            margin-bottom:50px;
+        }
+
+        .services-title h2{
+            color:var(--primary);
+            font-size:14px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            margin-bottom:10px;
+        }
+
+        .services-title p{
+            font-size:42px;
+            font-weight:800;
+        }
+
+        .services-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:32px;
+        }
+
+        .service-card{
+            background:white;
+            border-radius:24px;
+            padding:32px;
+            border:1px solid var(--slate-100);
+            box-shadow:0 10px 20px rgba(0,0,0,.04);
+            transition:.3s;
+        }
+
+        .service-card:hover{
+            transform:translateY(-4px);
+            box-shadow:0 20px 40px rgba(0,0,0,.08);
+        }
+
+        .service-icon{
+            width:56px;
+            height:56px;
+            border-radius:16px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:24px;
+            margin-bottom:24px;
+            transition:.3s;
+        }
+
+        .blue-icon{
+            background:#eff6ff;
+            color:var(--primary);
+        }
+
+        .red-icon{
+            background:#fef2f2;
+            color:#ef4444;
+        }
+
+        .service-card h3{
+            font-size:24px;
+            margin-bottom:14px;
+        }
+
+        .service-card p{
+            color:var(--slate-500);
+            margin-bottom:20px;
+        }
+
+        .service-card a{
+            font-weight:600;
+            color:var(--primary);
+        }
+
+        /* SEARCH */
+
+        #admin-search-container{
+            flex:1;
+            max-width:450px;
+            margin:0 32px;
+        }
+
+        #admin-search-container input{
+            padding-left:44px;
+            background:var(--slate-50);
+        }
+
+        .search-box{
+            position:relative;
+        }
+
+        .search-box i{
+            position:absolute;
+            top:50%;
+            left:14px;
+            transform:translateY(-50%);
+            color:var(--slate-400);
+        }
+
+        #admin-search-results{
+            max-width:1280px;
+            margin:24px auto 0;
+            padding:0 20px;
+        }
+
+        .results-card{
+            background:white;
+            border-radius:24px;
+            padding:24px;
+            border:1px solid var(--slate-200);
+            box-shadow:0 20px 40px rgba(0,0,0,.08);
+        }
+
+        .results-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:20px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        thead{
+            background:var(--slate-50);
+        }
+
+        th,
+        td{
+            padding:16px;
+            text-align:left;
+            border-bottom:1px solid var(--slate-200);
+        }
+
+        th{
+            font-size:12px;
+            text-transform:uppercase;
+            color:var(--slate-500);
+        }
+
+        tbody tr:hover{
+            background:var(--slate-50);
+        }
+
+        .patient-avatar{
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background:rgba(14,165,233,.1);
+            color:var(--primary);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+        }
+
+        .patient-info{
+            display:flex;
+            align-items:center;
+            gap:16px;
+        }
+
+        .city-badge{
+            padding:4px 10px;
+            border-radius:999px;
+            background:#dbeafe;
+            color:#1d4ed8;
+            font-size:12px;
+            font-weight:600;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:992px){
+
+            .hero-inner{
+                grid-template-columns:1fr;
+            }
+
+            .services-grid{
+                grid-template-columns:1fr;
+            }
+
+            .city-grid{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .form-grid{
+                grid-template-columns:1fr;
+            }
+
+            .full-width{
+                grid-column:span 1;
+            }
+
+            .desktop-menu{
+                display:none;
+            }
+        }
+
+        @media(max-width:768px){
+
+            .hero h1{
+                font-size:42px;
+            }
+
+            .hero p{
+                font-size:18px;
+            }
+
+            .city-grid{
+                grid-template-columns:1fr;
+            }
+
+            .double-grid{
+                grid-template-columns:1fr;
+            }
+
+            .services-title p{
+                font-size:32px;
+            }
+
+            .city-title h2{
+                font-size:32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="hidden glass">
+        <div class="nav-wrapper">
+            <div class="nav-inner">
+
+                <div class="logo" onclick="navigate('home')">
+                    <div class="logo-box">
+                        <img src="cams-logo (1).svg" alt="Logo">
+                    </div>
+
+                    <div class="logo-text">
+                        CAMS <br>
+                        <span>Health clinic</span>
+                    </div>
+                </div>
+
+                <!-- Admin Search -->
+                <div id="admin-search-container" class="hidden">
+                    <div class="search-box">
+                        <i class="fa-solid fa-search"></i>
+
+                        <input
+                            type="text"
+                            id="admin-search-input"
+                            onkeyup="searchPatients()"
+                            placeholder="Admin: Search patients by name..."
+                        >
+                    </div>
+                </div>
+
+                <div class="desktop-menu">
+                    <a href="#">Services</a>
+                    <a href="#">Doctors</a>
+                    <a href="#">Contact</a>
+
+                    <div class="user-box">
+                        <div class="user-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <span id="nav-username">User</span>
+
+                        <button onclick="logout()" style="color:#ef4444;">
+                            <i class="fa-solid fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main id="app-container">
+
+        <!-- LOGIN -->
+        <section id="view-login" class="center-screen">
+
+            <div class="card login-card fade-in">
+
+                <div class="login-header">
+
+                    <div class="login-logo">
+                        <img src="cams-logo (1).svg" alt="Logo">
+                    </div>
+
+                    <h2>Welcome</h2>
+                    <p>Your health, our priority.</p>
+
+                </div>
+
+                <div class="form-wrapper">
+
+                    <div class="tab-header">
+                        <button class="active-tab">Sign In</button>
+
+                        <button
+                            class="inactive-tab"
+                            onclick="alert('For this demo, just use Sign In.')"
+                        >
+                            Register
+                        </button>
+                    </div>
+
+                    <form id="login-form" onsubmit="handleLogin(event)">
+
+                        <div class="form-group">
+                            <label>Email / Username</label>
+
+                            <div class="input-icon">
+                                <i class="fa-solid fa-envelope"></i>
+
+                                <input
+                                    type="text"
+                                    id="login-email"
+                                    required
+                                    placeholder="Enter your email"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+
+                            <div class="input-icon">
+                                <i class="fa-solid fa-lock"></i>
+
+                                <input
+                                    type="password"
+                                    id="login-password"
+                                    required
+                                    placeholder="Enter password"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="remember-row">
+
+                            <label>
+                                <input type="checkbox" style="width:auto;">
+                                Remember me
+                            </label>
+
+                            <a href="#">Forgot Password?</a>
+
+                        </div>
+
+                        <button type="submit" class="primary-btn">
+                            Sign In
+                        </button>
+
+                    </form>
+
+                    <button
+                        onclick="handleAdminAccess()"
+                        type="button"
+                        class="admin-btn"
+                    >
+                        <i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i>
+                        Admin Access
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CITY -->
+        <section id="view-city" class="hidden">
+
+            <div class="container fade-in">
+
+                <div class="city-title">
+                    <h2>Select Your Location</h2>
+
+                    <p>
+                        Choose your city to find healthcare facilities and specialists near you.
+                    </p>
+                </div>
+
+                <div class="city-grid"></div>
+
+            </div>
+
+        </section>
+
+        <!-- DETAILS -->
+        <section id="view-details" class="hidden">
+
+            <div class="card details-card fade-in">
+
+                <div class="details-header">
+                    <h2>Complete Your Medical Profile</h2>
+
+                    <p>
+                        This information helps us provide better care.
+                    </p>
+                </div>
+
+                <form id="details-form" onsubmit="savePatientDetails(event)" class="details-form">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="p-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email ID</label>
+                            <input type="email" id="p-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mobile No.</label>
+                            <input type="tel" id="p-mobile" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Emergency Contact No.</label>
+                            <input type="tel" id="p-emergency" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="p-dob" required>
+                        </div>
+
+                        <div class="double-grid">
+
+                            <div class="form-group">
+                                <label>Gender</label>
+
+                                <select id="p-gender" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Blood Group</label>
+
+                                <select id="p-blood" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Home Address</label>
+
+                            <textarea id="p-address" rows="3" required></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="bottom-row">
+
+                        <button type="button" onclick="navigate('city')" class="back-btn">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Back
+                        </button>
+
+                        <button type="submit" class="primary-btn" style="width:auto;padding:14px 30px;">
+                            Complete Profile
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- HOME -->
+        <section id="view-home" class="hidden">
+
+            <!-- SEARCH RESULTS -->
+            <div id="admin-search-results" class="hidden fade-in">
+
+                <div class="results-card">
+
+                    <div class="results-header">
+
+                        <h3>
+                            <i class="fa-solid fa-users" style="color:var(--primary);"></i>
+                            Patient Search Results
+                        </h3>
+
+                        <button onclick="closeSearchResults()">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="overflow-x-auto">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Contact</th>
+                                    <th>City</th>
+                                    <th>Blood</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="search-results-body"></tbody>
+
+                        </table>
+
+                    </div>
+
+                    <div id="no-results-msg" class="hidden" style="text-align:center;padding:40px;color:var(--slate-500);">
+                        No patients found matching your search.
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- HERO -->
+            <div id="home-hero-content" class="fade-in">
+
+                <div class="hero">
+
+                    <div class="hero-inner">
+
+                        <div>
+
+                            <span class="hero-badge">
+                                <span id="hero-city-tag">Your City</span>
+                                Healthcare
+                            </span>
+
+                            <h1>
+                                Advanced Care for
+                                <span>A Better Tomorrow</span>
+                            </h1>
+
+                            <p>
+                                Experience world-class medical facilities,
+                                expert specialists, and compassionate care
+                                right here in your city.
+                            </p>
+
+                            <div class="hero-buttons">
+
+                                <a href="#" class="primary-btn" style="width:auto;padding:14px 28px;">
+                                    Book Appointment
+                                </a>
+
+                                <a href="#" class="secondary-btn">
+                                    Emergency Services
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="hero-graphic">
+
+                            <div class="blob blue"></div>
+                            <div class="blob orange"></div>
+
+                            <div class="doctor-card">
+
+                                <div class="doctor-icon">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                </div>
+
+                                <div>
+                                    <p style="font-weight:700;color:var(--slate-800);">
+                                        Expert Doctors
+                                    </p>
+
+                                    <p style="font-size:14px;color:var(--slate-500);">
+                                        Available 24/7
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- SERVICES -->
+                <div class="services">
+
+                    <div class="services-title">
+
+                        <h2>OUR SERVICES</h2>
+
+                        <p>
+                            Comprehensive Healthcare Solutions
+                        </p>
+
+                    </div>
+
+                    <div class="services-grid">
+
+                        <!-- SERVICE 1 -->
+                        <div class="service-card">
+
+                            <div class="service-icon blue-icon">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+
+                            <h3>Online Consultations</h3>
+
+                            <p>
+                                Connect with top specialists from the comfort
+                                of your home via secure video calls.
+                            </p>
+
+                            <a href="#">Learn more →</a>
+
+                        </div>
+
+                        <!-- SERVICE 2 -->
+                        <div class="service-card">
+
+                            <div class="service-icon blue-icon">
+                                <i class="fa-solid fa-pills"></i>
+                            </div>
+
+                            <h3>Pharmacy Delivery</h3>
+
+                            <p>
+                                Order medicines online and get them delivered
+                                within 24 hours.
+                            </p>
+
+                            <a href="#">Learn more →</a>
+
+                        </div>
+
+                        <!-- SERVICE 3 -->
+                        <div class="service-card">
+
+                            <div class="service-icon red-icon">
+                                <i class="fa-solid fa-truck-medical"></i>
+                            </div>
+
+                            <h3>Emergency Care</h3>
+
+                            <p>
+                                24/7 dedicated emergency response team and
+                                advanced life support ambulances.
+                            </p>
+
+                            <a href="#" style="color:#ef4444;">
+                                Call Now →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+
+        // --- State Management ---
+        const state = {
+            userRole: null,
+            selectedCity: null,
+            patientDetails: null
+        };
+
+        const cities = [
+            'Chennai',
+            'Bengaluru',
+            'Pune',
+            'Mumbai',
+            'Hyderabad',
+            'Coimbatore',
+            'Delhi'
+        ];
+
+        // Dummy Database
+        let patientDatabase = [
+            {
+                id: 1,
+                name: "Raja ss",
+                mobile: "9841448735",
+                email: "raja.sivalingam@gmail.com",
+                blood: "O+",
+                city: "chennai",
+                gender: "Male"
+            },
+            {
+                id: 2,
+                name: "Rahul Sharma",
+                mobile: "9876543210",
+                email: "rahul@email.com",
+                blood: "O+",
+                city: "Delhi",
+                gender: "Male"
+            },
+            {
+                id: 3,
+                name: "Priya Patel",
+                mobile: "8765432109",
+                email: "priya@email.com",
+                blood: "A+",
+                city: "Mumbai",
+                gender: "Female"
+            }
+        ];
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCities();
+            navigate('login');
+        });
+
+        // NAVIGATION
+        function navigate(viewId){
+
+            ['login','city','details','home'].forEach(id => {
+                document
+                    .getElementById(`view-${id}`)
+                    .classList
+                    .add('hidden');
+            });
+
+            const navbar = document.getElementById('navbar');
+
+            if(viewId === 'home'){
+
+                navbar.classList.remove('hidden');
+
+                document
+                    .getElementById('nav-username')
+                    .innerText =
+                    state.userRole === 'admin'
+                        ? 'Administrator'
+                        : (state.patientDetails?.name || 'Patient');
+
+                const searchContainer =
+                    document.getElementById('admin-search-container');
+
+                if(state.userRole === 'admin'){
+
+                    searchContainer.classList.remove('hidden');
+
+                    document
+                        .getElementById('hero-city-tag')
+                        .innerText = 'All Regions';
+
+                }else{
+
+                    searchContainer.classList.add('hidden');
+
+                    document
+                        .getElementById('hero-city-tag')
+                        .innerText =
+                        state.selectedCity || 'Your City';
+                }
+
+            }else{
+                navbar.classList.add('hidden');
+            }
+
+            document
+                .getElementById(`view-${viewId}`)
+                .classList
+                .remove('hidden');
+
+            window.scrollTo(0,0);
+        }
+
+        // LOGIN
+        function handleLogin(e){
+
+            e.preventDefault();
+
+            const email =
+                document.getElementById('login-email').value;
+
+            state.userRole = 'patient';
+
+            if(email.includes('@')){
+                document.getElementById('p-email').value = email;
+            }
+
+            navigate('city');
+        }
+
+        function handleAdminAccess(){
+
+            const pass =
+                prompt("Please enter the Admin Password:");
+
+            if(pass === "cams@org"){
+
+                state.userRole = 'admin';
+                navigate('home');
+
+            }else if(pass !== null){
+
+                alert("Incorrect Admin Password.");
+            }
+        }
+
+        function logout(){
+
+            state.userRole = null;
+            state.selectedCity = null;
+            state.patientDetails = null;
+
+            document.getElementById('login-form').reset();
+            document.getElementById('details-form').reset();
+
+            closeSearchResults();
+
+            navigate('login');
+        }
+
+        // CITY
+        function renderCities(){
+
+            const container =
+                document.querySelector('.city-grid');
+
+            container.innerHTML = '';
+
+            const cityIcons = [
+                'fa-building',
+                'fa-map-location-dot',
+                'fa-hospital',
+                'fa-city'
+            ];
+
+            const colors = [
+                '#dbeafe',
+                '#ccfbf1',
+                '#e0e7ff',
+                '#e0f2fe'
+            ];
+
+            const textColors = [
+                '#2563eb',
+                '#0f766e',
+                '#4338ca',
+                '#0369a1'
+            ];
+
+            cities.forEach((city,index) => {
+
+                const icon =
+                    cityIcons[index % cityIcons.length];
+
+                const bg =
+                    colors[index % colors.length];
+
+                const text =
+                    textColors[index % textColors.length];
+
+                const btn = document.createElement('button');
+
+                btn.className = 'city-card';
+
+                btn.onclick = () => selectCity(city);
+
+                btn.innerHTML = `
+                    <div class="city-icon"
+                        style="
+                            background:${bg};
+                            color:${text};
+                        "
+                    >
+                        <i class="fa-solid ${icon}"></i>
+                    </div>
+
+                    <span style="
+                        font-weight:600;
+                        font-size:18px;
+                    ">
+                        ${city}
+                    </span>
+                `;
+
+                container.appendChild(btn);
+            });
+        }
+
+        function selectCity(city){
+            state.selectedCity = city;
+            navigate('details');
+        }
+
+        // DETAILS
+        function savePatientDetails(e){
+
+            e.preventDefault();
+
+            const details = {
+                name: document.getElementById('p-name').value,
+                email: document.getElementById('p-email').value,
+                mobile: document.getElementById('p-mobile').value,
+                emergency: document.getElementById('p-emergency').value,
+                dob: document.getElementById('p-dob').value,
+                gender: document.getElementById('p-gender').value,
+                blood: document.getElementById('p-blood').value,
+                address: document.getElementById('p-address').value,
+                city: state.selectedCity
+            };
+
+            state.patientDetails = details;
+
+            patientDatabase.push({
+                id: Date.now(),
+                name: details.name,
+                mobile: details.mobile,
+                email: details.email,
+                blood: details.blood,
+                city: details.city,
+                gender: details.gender
+            });
+
+            navigate('home');
+        }
+
+        // SEARCH
+        function searchPatients(){
+
+            const query =
+                document
+                    .getElementById('admin-search-input')
+                    .value
+                    .toLowerCase();
+
+            const resultsContainer =
+                document.getElementById('admin-search-results');
+
+            const heroContent =
+                document.getElementById('home-hero-content');
+
+            const tbody =
+                document.getElementById('search-results-body');
+
+            const noResults =
+                document.getElementById('no-results-msg');
+
+            if(query.trim() === ''){
+                closeSearchResults();
+                return;
+            }
+
+            resultsContainer.classList.remove('hidden');
+            heroContent.classList.add('hidden');
+
+            const filtered = patientDatabase.filter(p =>
+                p.name.toLowerCase().includes(query) ||
+                p.city.toLowerCase().includes(query) ||
+                p.mobile.includes(query)
+            );
+
+            tbody.innerHTML = '';
+
+            if(filtered.length === 0){
+
+                noResults.classList.remove('hidden');
+
+                document.querySelector('table')
+                    .classList.add('hidden');
+
+            }else{
+
+                noResults.classList.add('hidden');
+
+                document.querySelector('table')
+                    .classList.remove('hidden');
+
+                filtered.forEach(p => {
+
+                    const tr = document.createElement('tr');
+
+                    tr.innerHTML = `
+                        <td>
+                            <div class="patient-info">
+
+                                <div class="patient-avatar">
+                                    ${p.name.charAt(0)}
+                                </div>
+
+                                <div>
+                                    <div style="
+                                        font-size:14px;
+                                        font-weight:600;
+                                    ">
+                                        ${p.name}
+                                    </div>
+
+                                    <div style="
+                                        font-size:13px;
+                                        color:var(--slate-500);
+                                    ">
+                                        ${p.email}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            <div style="font-size:14px;">
+                                ${p.mobile}
+                            </div>
+
+                            <div style="
+                                font-size:12px;
+                                color:var(--slate-500);
+                            ">
+                                ${p.gender}
+                            </div>
+                        </td>
+
+                        <td>
+                            <span class="city-badge">
+                                ${p.city}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span style="
+                                font-weight:700;
+                                color:#ef4444;
+                            ">
+                                ${p.blood}
+                            </span>
+                        </td>
+
+                        <td>
+                            <a href="#" style="
+                                color:var(--primary);
+                                font-weight:600;
+                            ">
+                                <i class="fa-solid fa-eye"></i>
+                                View
+                            </a>
+                        </td>
+                    `;
+
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        function closeSearchResults(){
+
+            document
+                .getElementById('admin-search-input')
+                .value = '';
+
+            document
+                .getElementById('admin-search-results')
+                .classList.add('hidden');
+
+            document
+                .getElementById('home-hero-content')
+                .classList.remove('hidden');
+        }
+
+    </script>
+
+</body>
+</html>
